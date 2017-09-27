@@ -62,7 +62,7 @@ final class Connection
 
     public static function getConfigFile( $inifile )
     {
-        $inifile = "config/{$inifile}.ini";
+        $inifile = "../../../config/{$inifile}.ini";
 
         if ( file_exists( $inifile ) ) {
             return parse_ini_file( $inifile );

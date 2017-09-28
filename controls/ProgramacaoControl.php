@@ -1,22 +1,36 @@
 <?php
 
+require_once "database/Connection.php";
+
 class ProgramacaoControl
 {
-    public function getData()
+    public static function getData()
     {
-          $conn = Connection::open();
+        try {
 
-          foreach ( $objects as $object ) {
+            $conn = Connection::open();
 
-              $sql = "SELECT $object->quantifier FROM $object->dataview";
+            $objects = $conn->query('
+              SELECT pr.id AS id,
+	                   pr.nome AS programa_nome,
+                     pr.hora AS horario,
+                     pr.descricao AS descricao,
+                     lo.id AS local_id,
+                     lo.nome AS local_nome,
+	                   se.nome AS setor_nome
+              FROM programacoes pr
+              JOIN setores se ON se.id = setor_id
+              JOIN locais lo ON lo.id = se.local_id;
+            ');
 
-              $result = $conn->query( $sql, PDO::FETCH_OBJ );
+            return $objects;
 
-              foreach ( $result as $row ) {
-                  $object->quantifier = $row->amount;
-              }
+        } catch (Exception $e) {
 
-              $this->mountDashboard( $object );
-          }
+            echo "ERROR" . $e->getMessage();
+
+            return NULL
+
+        }
     }
 }

@@ -9,7 +9,7 @@
 
 <section>
     <ul class="collapsible" data-collapsible="accordion">
-        
+
         <li>
             <div class="collapsible-header itemtitlesize">
                 <i class="material-icons">today</i>

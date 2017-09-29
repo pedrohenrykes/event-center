@@ -1,8 +1,5 @@
 <?php
 
-use PDO;
-use Exception;
-
 final class Connection
 {
     private function __construct() { }
@@ -31,27 +28,17 @@ final class Connection
         switch ( $type ) {
 
             case "pgsql":
-
                 $port = $port ? $port : "5432";
                 $conn = new PDO( "pgsql:dbname={$name};user={$user};password={$pass};host=$host;port={$port}" );
-
                 break;
 
             case "mysql":
-
                 $port = $port ? $port : "3306";
-                if ($char == "ISO") {
-                    $conn = new PDO( "mysql:host={$host};port={$port};dbname={$name}", $user, $pass );
-                } else {
-                    $conn = new PDO( "mysql:host={$host};port={$port};dbname={$name}", $user, $pass, [ PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8" ] );
-                }
-
+                $conn = new PDO( "mysql:host={$host};port={$port};dbname={$name}", $user, $pass, [ PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8" ] );
                 break;
 
             default:
-
                 throw new Exception( "Driver não encontrado: " . $type );
-
                 break;
         }
 
@@ -62,7 +49,7 @@ final class Connection
 
     public static function getConfigFile( $inifile )
     {
-        $inifile = "../../../config/{$inifile}.ini";
+        $inifile = "config/{$inifile}.ini";
 
         if ( file_exists( $inifile ) ) {
             return parse_ini_file( $inifile );

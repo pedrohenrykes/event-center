@@ -8,7 +8,7 @@ class ProgramacaoControl
     {
         try {
 
-            $conn = Connection::open();
+            $conn = Connection::open( "database" );
 
             $objects = $conn->query('
               SELECT pr.id AS id,
@@ -20,16 +20,16 @@ class ProgramacaoControl
 	                   se.nome AS setor_nome
               FROM programacoes pr
               JOIN setores se ON se.id = setor_id
-              JOIN locais lo ON lo.id = se.local_id;
+              JOIN locais lo ON lo.id = se.local_id
             ');
 
             return $objects;
 
-        } catch (Exception $e) {
+        } catch ( Exception $e ) {
 
             echo "ERROR" . $e->getMessage();
 
-            return NULL
+            return NULL;
 
         }
     }

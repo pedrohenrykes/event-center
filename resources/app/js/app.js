@@ -1,5 +1,4 @@
-$(".button-collapse").sideNav();
-
 $(document).ready(function(){
-  $('.carousel').carousel();
+  $(".button-collapse").sideNav();
+  $('ul.tabs').tabs();
 });

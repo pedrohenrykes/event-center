@@ -20,6 +20,12 @@ SET time_zone = "+00:00";
 -- Banco de dados: `db_eventcenter`
 --
 
+DROP DATABASE db_eventcenter;
+
+CREATE DATABASE db_eventcenter;
+
+USE db_eventcenter;
+
 -- --------------------------------------------------------
 
 --
@@ -33,8 +39,8 @@ CREATE TABLE `eventos` (
   `edicao` int(11) DEFAULT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `descricao` varchar(1500) DEFAULT NULL,
-  `data` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
+  `data_evento` date DEFAULT NULL,
+  `hora_evento` time DEFAULT NULL,
   `duracao` int(11) DEFAULT NULL,
   `situacao` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -43,7 +49,7 @@ CREATE TABLE `eventos` (
 -- Fazendo dump de dados para tabela `eventos`
 --
 
-INSERT INTO `eventos` (`id`, `local_id`, `genero_id`, `edicao`, `nome`, `descricao`, `data`, `hora`, `duracao`, `situacao`) VALUES
+INSERT INTO `eventos` (`id`, `local_id`, `genero_id`, `edicao`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
 (1, 1, 1, 55, 'Festa do Boi', 'Maior evento agropecuário do RN', '2017-09-01', '06:00:00', 3, 'ABERTO');
 
 -- --------------------------------------------------------
@@ -101,8 +107,8 @@ CREATE TABLE `programacoes` (
   `genero_id` bigint(20) UNSIGNED NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `descricao` varchar(1500) DEFAULT NULL,
-  `data` date DEFAULT NULL,
-  `hora` time DEFAULT NULL,
+  `data_evento` date DEFAULT NULL,
+  `hora_evento` time DEFAULT NULL,
   `duracao` int(11) DEFAULT NULL,
   `situacao` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -111,8 +117,12 @@ CREATE TABLE `programacoes` (
 -- Fazendo dump de dados para tabela `programacoes`
 --
 
-INSERT INTO `programacoes` (`id`, `evento_id`, `setor_id`, `genero_id`, `nome`, `descricao`, `data`, `hora`, `duracao`, `situacao`) VALUES
-(1, 1, 2, 2, 'Falando com o governador', 'Debate sobre a agricultura', '2017-09-02', '12:30:00', 1, 'ABERTO');
+INSERT INTO `programacoes` (`id`, `evento_id`, `setor_id`, `genero_id`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
+(1, 1, 6, 2, 'Falando com o governador', 'Debate sobre a agricultura', '2017-09-02', '12:30:00', 1, 'ABERTO'),
+(2, 1, 2, 1, 'Exposição de caprinos', 'Ovelhas e cabras', '2017-09-02', '13:30:00', 2, 'ABERTO'),
+(3, 1, 3, 1, 'Exposição de bovinos', 'Vacas diversas', '2017-09-03', '14:00:00', 2, 'ABERTO'),
+(4, 1, 4, 1, 'Exposição de equinos', 'Melhores cavalos', '2017-09-04', '15:30:00', 2, 'ABERTO'),
+(5, 1, 5, 2, 'Exposição de cultivos', 'Cultivo orgânico', '2017-09-04', '16:30:00', 2, 'ABERTO');
 
 -- --------------------------------------------------------
 
@@ -131,8 +141,12 @@ CREATE TABLE `setores` (
 --
 
 INSERT INTO `setores` (`id`, `local_id`, `nome`) VALUES
-(1, 1, 'Setor 5'),
-(2, 1, 'Gabinete do Governador');
+(1, 1, 'Setor 1'),
+(2, 1, 'Setor 2'),
+(3, 1, 'Setor 3'),
+(4, 1, 'Setor 4'),
+(5, 1, 'Setor 5'),
+(6, 1, 'Gabinete do Governador');
 
 --
 -- Índices de tabelas apagadas

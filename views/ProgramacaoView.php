@@ -25,13 +25,15 @@
 
   <div class="row">
     <div class="col s12">
-      <ul class="tabs tab-demo z-depth-1">
+      <div class="section scrollspy">
+        <ul class="tabs tab-demo z-depth-1">
 
-        <?php foreach ( $tabs as $tab ): ?>
-            <li class="tab col s3"><a href="#<?= str_replace( "/", "_", $tab ); ?>"><?= $tab ?></a></li>
-        <?php endforeach; ?>
+          <?php foreach ( $tabs as $tab ): ?>
+              <li class="tab col s3"><a href="#<?= str_replace( "/", "_", $tab ); ?>"><?= $tab ?></a></li>
+          <?php endforeach; ?>
 
-      </ul>
+        </ul>
+      </div>
     </div>
 
     <?php foreach ( $tabs as $tab ): ?>

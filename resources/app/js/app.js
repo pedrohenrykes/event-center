@@ -1,4 +1,4 @@
 $(document).ready(function(){
-  $(".button-collapse").sideNav();
-  $('ul.tabs').tabs();
+    $(".button-collapse").sideNav();
+    $('ul.tabs').tabs();
 });

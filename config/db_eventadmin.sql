@@ -10,14 +10,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_admin`
+-- Database: `db_eventadmin`
 --
 
-DROP DATABASE IF EXISTS db_admin;
+DROP DATABASE IF EXISTS db_eventadmin;
 
-CREATE DATABASE db_admin;
+CREATE DATABASE db_eventadmin;
 
-USE db_admin;
+USE db_eventadmin;
 
 -- --------------------------------------------------------
 
@@ -1138,18 +1138,17 @@ CREATE TABLE `sidemenu` (
 --
 
 INSERT INTO `sidemenu` (`id`, `menu_type`, `name`, `icon`, `sequence`, `action_class`, `menu_id`, `active`) VALUES
-(1, 'menu', 'Administração', 'fa-institution', 3, 'null', 0, 'Y'),
-(2, 'submenu', 'Programas', 'fa-file-code-o', 3.1, 'SystemProgramList', 9, 'Y'),
-(3, 'submenu', 'Grupos', 'fa-users', 3.2, 'SystemGroupList', 9, 'Y'),
-(4, 'submenu', 'Unidades', 'fa-institution', 3.4, 'SystemUnitList', 9, 'N'),
-(5, 'submenu', 'Usuários', 'fa-user', 3.3, 'SystemUserList', 9, 'Y'),
-(6, 'submenu', 'Sidemenu', 'fa-list-ul', 3.5, 'SideMenuList', 9, 'Y'),
-(7, 'submenu', 'Dashboard', 'fa-th', 3.6, 'DashBoardList', 9, 'Y'),
-(8, 'menu', 'Logs', 'fa-tv', 4, 'null', 0, 'N'),
-(9, 'submenu', 'Estatística de acesso', 'fa-bar-chart', 4.2, 'SystemAccessLogStats', 16, 'N'),
-(10, 'submenu', 'Log de acesso', 'fa-key', 4.1, 'SystemAccessLogList', 16, 'N'),
-(11, 'menu', 'Cadastros', 'fa-leanpub', 2, 'null', 0, 'Y'),
-(12, 'submenu', 'Pacientes', 'fa-users', 1.1, 'PacienteList', 34, 'Y');
+(1, 'menu', 'Administração', 'fa-institution', 1, 'null', 0, 'Y'),
+(2, 'submenu', 'Programas', 'fa-file-code-o', 1.1, 'SystemProgramList', 1, 'Y'),
+(3, 'submenu', 'Grupos', 'fa-users', 1.2, 'SystemGroupList', 1, 'Y'),
+(4, 'submenu', 'Unidades', 'fa-institution', 1.3, 'SystemUnitList', 1, 'N'),
+(5, 'submenu', 'Usuários', 'fa-user', 1.4, 'SystemUserList', 1, 'Y'),
+(6, 'submenu', 'Sidemenu', 'fa-list-ul', 1.5, 'SideMenuList', 1, 'Y'),
+(7, 'submenu', 'Dashboard', 'fa-th', 1.6, 'DashBoardList', 1, 'Y'),
+(8, 'menu', 'Logs', 'fa-tv', 2, 'null', 0, 'N'),
+(9, 'submenu', 'Estatística de acesso', 'fa-bar-chart', 2.1, 'SystemAccessLogStats', 8, 'N'),
+(10, 'submenu', 'Log de acesso', 'fa-key', 2.2, 'SystemAccessLogList', 8, 'N'),
+(11, 'menu', 'Cadastros', 'fa-leanpub', 3, 'null', 0, 'Y');
 
 -- --------------------------------------------------------
 
@@ -1212,7 +1211,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `name`, `login`, `password`, `email`, `frontpage_id`, `system_unit_id`, `active`, `profissional_id`) VALUES
-(1, 'DESENVOLVEDOR', 'devel', 'e77989ed21758e78331b20e477fc5582', NULL, NULL, NULL, 'Y', 1),
+(1, 'DESENVOLVEDOR', 'devel', 'daf98543c487af6ceb230cae002c92fd', NULL, NULL, NULL, 'Y', 1),
 (2, 'ADMINISTRADOR', 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, NULL, 'Y', NULL);
 
 -- --------------------------------------------------------
@@ -1262,7 +1261,7 @@ CREATE TABLE `vw_numero_acessos` (
 --
 DROP TABLE IF EXISTS `vw_numero_acessos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`db_admin`@`localhost` SQL SECURITY DEFINER VIEW `vw_numero_acessos`  AS  select count(`acessos`.`id`) AS `amount` from `acessos` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_numero_acessos`  AS  select count(`acessos`.`id`) AS `amount` from `acessos` ;
 
 --
 -- Indexes for dumped tables

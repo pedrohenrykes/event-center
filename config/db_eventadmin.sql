@@ -1148,7 +1148,9 @@ INSERT INTO `sidemenu` (`id`, `menu_type`, `name`, `icon`, `sequence`, `action_c
 (8, 'menu', 'Logs', 'fa-tv', 2, 'null', 0, 'N'),
 (9, 'submenu', 'Estatística de acesso', 'fa-bar-chart', 2.1, 'SystemAccessLogStats', 8, 'N'),
 (10, 'submenu', 'Log de acesso', 'fa-key', 2.2, 'SystemAccessLogList', 8, 'N'),
-(11, 'menu', 'Cadastros', 'fa-leanpub', 3, 'null', 0, 'Y');
+(11, 'menu', 'Cadastros', 'fa-leanpub', 3, 'null', 0, 'Y'),
+(12, 'submenu', 'Profissionais', 'fa-user', 3.1, 'ProfissionalList', 11, 'Y'),
+(13, 'submenu', 'Tipos de Profissionais', 'fa-users', 3.2, 'TipoProfissionalList', 11, 'Y');
 
 -- --------------------------------------------------------
 
@@ -1449,7 +1451,7 @@ ALTER TABLE `programas`
 -- AUTO_INCREMENT for table `sidemenu`
 --
 ALTER TABLE `sidemenu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tipoprofissional`
 --

@@ -8,9 +8,13 @@ main {
     flex: 1 0 auto;
 }
 
-@media only screen and (max-width: 524px) {
+.change-logo {
+    margin-left: 10%;
+}
+
+@media only screen and (max-width: 992px) {
     .change-logo {
-        font-size: 1.1rem !important;
+        font-size: 0rem !important;
     }
 }
 
@@ -20,4 +24,8 @@ main {
 
 .itemtitlesize > h5 {
     margin-left: 25px;
+}
+
+.shadowbox {
+    box-shadow: 5px 5px 5px #888888;
 }

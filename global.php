@@ -1,3 +1,2 @@
 <?php
-
-date_default_timezone_set('America/Recife');
+date_default_timezone_set( "America/Recife" );

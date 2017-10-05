@@ -1,8 +1,4 @@
-<?php
-
-require_once 'global.php';
-
-?>
+<?php require_once "global.php"; ?>
 <!DOCTYPE html>
 <html>
   <head>

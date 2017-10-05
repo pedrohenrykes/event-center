@@ -28,7 +28,7 @@ class SetoresList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['nome'] = 'Nome';
+        $items['local_id'] = 'Local';
 
         $opcao->addItems($items);
 
@@ -79,7 +79,7 @@ class SetoresList extends TPage
 
     function onReload()
     {
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('SetoresRecord');
         $criteria = new TCriteria;
@@ -106,7 +106,7 @@ class SetoresList extends TPage
         $campo = $data->opcao;
         $dados = $data->nome;
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('SetoresRecord');
         $criteria = new TCriteria;
@@ -147,7 +147,7 @@ class SetoresList extends TPage
     {
         $key = $param['key'];
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $obj = new SetoresRecord($key);
 

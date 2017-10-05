@@ -28,8 +28,7 @@ class EventosList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['edicao'] = 'Edição';
-		$items['nome'] = 'Nome';
+        $items['local_id'] = 'Local';
 
         $opcao->addItems($items);
 
@@ -46,7 +45,6 @@ class EventosList extends TPage
 
         $dglocal_nome = new TDataGridColumn('local_nome', 'Local', 'left', 200);
         $dggenero_nome = new TDataGridColumn('genero_nome', 'Gênero', 'left', 200);
-		$dgedicao = new TDataGridColumn('edicao', 'Edição', 'left', 200);
         $dgnome = new TDataGridColumn('nome', 'Nome', 'left', 200);
         $dgdata_evento = new TDataGridColumn('data_evento', 'Data do Evento', 'left', 200);
         $dghora_evento = new TDataGridColumn('hora_evento', 'Hora do Evento', 'left', 200);
@@ -54,7 +52,6 @@ class EventosList extends TPage
 
         $this->datagrid->addColumn($dglocal_nome);
         $this->datagrid->addColumn($dggenero_nome);
-		$this->datagrid->addColumn($dgedicao);
         $this->datagrid->addColumn($dgnome);
         $this->datagrid->addColumn($dgdata_evento);
         $this->datagrid->addColumn($dghora_evento);
@@ -90,7 +87,7 @@ class EventosList extends TPage
 
     function onReload()
     {
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('EventosRecord');
         $criteria = new TCriteria;
@@ -101,7 +98,6 @@ class EventosList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
-				$cadastro->data_evento = TDate::date2br($cadastro->data_evento);
                 $this->datagrid->addItem($cadastro);
             }
         }
@@ -118,7 +114,7 @@ class EventosList extends TPage
         $campo = $data->opcao;
         $dados = $data->nome;
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('EventosRecord');
         $criteria = new TCriteria;
@@ -159,7 +155,7 @@ class EventosList extends TPage
     {
         $key = $param['key'];
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $obj = new EventosRecord($key);
 

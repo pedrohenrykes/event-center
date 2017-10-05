@@ -69,7 +69,7 @@
                       <span> <?= $object["descricao"]; ?> </span><br>
                     </div>
                     <div class="col s12 l6">
-                      <iframe width="100%" height="300" frameborder="0" style="border:0" src="http://www.hotel-r.net/im/hotel/es/el-parque-13.png" allowfullscreen=""></iframe>
+                      <img class="materialboxed" width="100%" src="http://www.hotel-r.net/im/hotel/es/el-parque-13.png" >
                     </div>
                   </div>
                 </div>

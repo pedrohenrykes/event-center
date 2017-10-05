@@ -28,7 +28,7 @@ class GenerosList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['nome'] = 'Nome';
+        $items['nome'] = 'Nome do Gênero';
 
         $opcao->addItems($items);
 
@@ -43,7 +43,7 @@ class GenerosList extends TPage
         $this->datagrid->style = "width: 100%";
         $this->datagrid->setHeight( 320 );
 		
-		$column_nome = new TDataGridColumn( "nome", "Nome", "left" );
+		$column_nome = new TDataGridColumn( "nome", "Nome do Gênero", "left" );
 
         $this->datagrid->addColumn( $column_nome );
         $actionEdit = new TDataGridAction(array('GenerosForm', 'onEdit'));
@@ -76,7 +76,7 @@ class GenerosList extends TPage
 
     function onReload()
     {
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('GenerosRecord');
         $criteria = new TCriteria;
@@ -103,7 +103,7 @@ class GenerosList extends TPage
         $campo = $data->opcao;
         $dados = $data->nome;
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('GenerosRecord');
         $criteria = new TCriteria;
@@ -144,7 +144,7 @@ class GenerosList extends TPage
     {
         $key = $param['key'];
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $obj = new GenerosRecord($key);
 

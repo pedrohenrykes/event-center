@@ -11,14 +11,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `db_eventcenter`
+-- Banco de dados: `db_webpage`
 --
 
-DROP DATABASE db_eventcenter;
+DROP DATABASE IF EXISTS db_webpage;
 
-CREATE DATABASE db_eventcenter;
+CREATE DATABASE db_webpage;
 
-USE db_eventcenter;
+USE db_webpage;
 
 -- --------------------------------------------------------
 

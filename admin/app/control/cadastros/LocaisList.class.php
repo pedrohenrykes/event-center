@@ -29,7 +29,6 @@ class LocaisList extends TPage
 
         $items = array();
         $items['nome'] = 'Nome';
-		$items['municipio'] = 'Município';
 
         $opcao->addItems($items);
 
@@ -84,7 +83,7 @@ class LocaisList extends TPage
 
     function onReload()
     {
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('LocaisRecord');
         $criteria = new TCriteria;
@@ -111,7 +110,7 @@ class LocaisList extends TPage
         $campo = $data->opcao;
         $dados = $data->nome;
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('LocaisRecord');
         $criteria = new TCriteria;
@@ -152,7 +151,7 @@ class LocaisList extends TPage
     {
         $key = $param['key'];
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $obj = new LocaisRecord($key);
 

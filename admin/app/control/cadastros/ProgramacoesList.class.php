@@ -28,7 +28,7 @@ class ProgramacoesList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['nome'] = 'Nome';
+        $items['local_id'] = 'Local';
 
         $opcao->addItems($items);
 
@@ -89,7 +89,7 @@ class ProgramacoesList extends TPage
 
     function onReload()
     {
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('ProgramacoesRecord');
         $criteria = new TCriteria;
@@ -100,7 +100,6 @@ class ProgramacoesList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
-				$cadastro->data_evento = TDate::date2br($cadastro->data_evento);
                 $this->datagrid->addItem($cadastro);
             }
         }
@@ -117,7 +116,7 @@ class ProgramacoesList extends TPage
         $campo = $data->opcao;
         $dados = $data->nome;
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $repository = new TRepository('ProgramacoesRecord');
         $criteria = new TCriteria;
@@ -158,7 +157,7 @@ class ProgramacoesList extends TPage
     {
         $key = $param['key'];
 
-        TTransaction::open('festadoboi');
+        TTransaction::open('database');
 
         $obj = new ProgramacoesRecord($key);
 

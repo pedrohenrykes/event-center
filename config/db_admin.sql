@@ -1,15 +1,8 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: 05-Out-2017 às 14:55
--- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
--- PHP Version: 7.0.22-0ubuntu0.16.04.1
+-- version 4.5.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -17,8 +10,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_eventadmin`
+-- Database: `db_admin`
 --
+
+DROP DATABASE IF EXISTS db_admin;
+
+CREATE DATABASE db_admin;
+
+USE db_admin;
 
 -- --------------------------------------------------------
 
@@ -99,31 +98,12 @@ CREATE TABLE `dashboard` (
   `action` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estrutura da tabela `eventos`
+-- Extraindo dados da tabela `dashboard`
 --
 
-CREATE TABLE `eventos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `local_id` bigint(20) UNSIGNED NOT NULL,
-  `genero_id` bigint(20) UNSIGNED NOT NULL,
-  `edicao` int(11) DEFAULT NULL,
-  `nome` varchar(100) DEFAULT NULL,
-  `descricao` varchar(1500) DEFAULT NULL,
-  `data_evento` date DEFAULT NULL,
-  `hora_evento` time DEFAULT NULL,
-  `duracao` int(11) DEFAULT NULL,
-  `situacao` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `eventos`
---
-
-INSERT INTO `eventos` (`id`, `local_id`, `genero_id`, `edicao`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
-(1, 1, 1, 55, 'Festa do Boi', 'Maior evento agropecuário do RN', '2017-09-01', '06:00:00', 3, 'ABERTO');
+INSERT INTO `dashboard` (`id`, `dataview`, `quantifier`, `title`, `icon`, `color`, `page`, `action`) VALUES
+(1, 'vw_numero_acessos', 'amount', 'Não urgente', 'fa-thermometer-1', 'bg-aqua', 'PacienteList', 'onReload');
 
 -- --------------------------------------------------------
 
@@ -931,25 +911,6 @@ INSERT INTO `fontawesomeicons` (`id`, `class`, `unicode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `generos`
---
-
-CREATE TABLE `generos` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nome` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `generos`
---
-
-INSERT INTO `generos` (`id`, `nome`) VALUES
-(1, 'Feira de Negócios'),
-(2, 'Palestra');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `grupos`
 --
 
@@ -1023,28 +984,6 @@ INSERT INTO `grupos_programas` (`id`, `system_group_id`, `system_program_id`) VA
 (37, 2, 37),
 (38, 2, 38);
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `locais`
---
-
-CREATE TABLE `locais` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `nome` varchar(100) DEFAULT NULL,
-  `municipio` varchar(100) DEFAULT NULL,
-  `bairro` varchar(100) DEFAULT NULL,
-  `endereco` varchar(100) DEFAULT NULL,
-  `latitude` double DEFAULT NULL,
-  `longitude` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `locais`
---
-
-INSERT INTO `locais` (`id`, `nome`, `municipio`, `bairro`, `endereco`, `latitude`, `longitude`) VALUES
-(1, 'Parque de Exposições', 'Parnamirim', 'Centro', 'BR101', -5.904718, -35.260229);
 
 -- --------------------------------------------------------
 
@@ -1124,36 +1063,6 @@ INSERT INTO `profissional` (`id`, `tipoprofissional_id`, `nomeprofissional`, `nu
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `programacoes`
---
-
-CREATE TABLE `programacoes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `evento_id` bigint(20) UNSIGNED NOT NULL,
-  `setor_id` bigint(20) UNSIGNED NOT NULL,
-  `genero_id` bigint(20) UNSIGNED NOT NULL,
-  `nome` varchar(100) DEFAULT NULL,
-  `descricao` varchar(1500) DEFAULT NULL,
-  `data_evento` date DEFAULT NULL,
-  `hora_evento` time DEFAULT NULL,
-  `duracao` int(11) DEFAULT NULL,
-  `situacao` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `programacoes`
---
-
-INSERT INTO `programacoes` (`id`, `evento_id`, `setor_id`, `genero_id`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
-(1, 1, 6, 2, 'Falando com o governador', 'Debate sobre a agricultura', '2017-09-02', '12:30:00', 1, 'ABERTO'),
-(2, 1, 2, 1, 'Exposição de caprinos', 'Ovelhas e cabras', '2017-09-02', '13:30:00', 2, 'ABERTO'),
-(3, 1, 3, 1, 'Exposição de bovinos', 'Vacas diversas', '2017-09-03', '14:00:00', 2, 'ABERTO'),
-(4, 1, 4, 1, 'Exposição de equinos', 'Melhores cavalos', '2017-09-04', '15:30:00', 2, 'ABERTO'),
-(5, 1, 5, 2, 'Exposição de cultivos', 'Cultivo orgânico', '2017-09-04', '16:30:00', 2, 'ABERTO');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `programas`
 --
 
@@ -1210,30 +1119,6 @@ INSERT INTO `programas` (`id`, `name`, `controller`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `setores`
---
-
-CREATE TABLE `setores` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `local_id` bigint(20) UNSIGNED NOT NULL,
-  `nome` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `setores`
---
-
-INSERT INTO `setores` (`id`, `local_id`, `nome`) VALUES
-(1, 1, 'Setor 1'),
-(2, 1, 'Setor 2'),
-(3, 1, 'Setor 3'),
-(4, 1, 'Setor 4'),
-(5, 1, 'Setor 5'),
-(6, 1, 'Gabinete do Governador');
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `sidemenu`
 --
 
@@ -1283,8 +1168,8 @@ CREATE TABLE `tipoprofissional` (
 --
 
 INSERT INTO `tipoprofissional` (`id`, `nometipoprofissional`) VALUES
-(2, 'ADMINISTRADOR'),
-(1, 'DESENVOLVEDOR');
+(1, 'DESENVOLVEDOR'),
+(2, 'ADMINISTRADOR');
 
 -- --------------------------------------------------------
 
@@ -1362,6 +1247,24 @@ CREATE TABLE `usuarios_programas` (
   `system_program_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_numero_acessos`
+--
+CREATE TABLE `vw_numero_acessos` (
+`amount` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_numero_acessos`
+--
+DROP TABLE IF EXISTS `vw_numero_acessos`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_numero_acessos`  AS  select count(`acessos`.`id`) AS `amount` from `acessos` ;
+
 --
 -- Indexes for dumped tables
 --
@@ -1385,23 +1288,9 @@ ALTER TABLE `dashboard`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indexes for table `eventos`
---
-ALTER TABLE `eventos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_eventos_generos1_idx` (`genero_id`),
-  ADD KEY `fk_eventos_locais1_idx` (`local_id`);
-
---
 -- Indexes for table `fontawesomeicons`
 --
 ALTER TABLE `fontawesomeicons`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `generos`
---
-ALTER TABLE `generos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1417,12 +1306,6 @@ ALTER TABLE `grupos_programas`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD KEY `idx_grupos_programas1` (`system_program_id`) USING BTREE,
   ADD KEY `idx_grupos_programas2` (`system_group_id`) USING BTREE;
-
---
--- Indexes for table `locais`
---
-ALTER TABLE `locais`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mensagens`
@@ -1455,26 +1338,10 @@ ALTER TABLE `profissional`
   ADD KEY `tipoprofissional_id` (`tipoprofissional_id`);
 
 --
--- Indexes for table `programacoes`
---
-ALTER TABLE `programacoes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_programacoes_setores1_idx` (`setor_id`),
-  ADD KEY `fk_programacoes_generos1_idx` (`genero_id`),
-  ADD KEY `fk_programacoes_eventos1_idx` (`evento_id`);
-
---
 -- Indexes for table `programas`
 --
 ALTER TABLE `programas`
   ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- Indexes for table `setores`
---
-ALTER TABLE `setores`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_setores_locais_idx` (`local_id`);
 
 --
 -- Indexes for table `sidemenu`
@@ -1541,20 +1408,10 @@ ALTER TABLE `adminltecolors`
 ALTER TABLE `dashboard`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `eventos`
---
-ALTER TABLE `eventos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
 -- AUTO_INCREMENT for table `fontawesomeicons`
 --
 ALTER TABLE `fontawesomeicons`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=787;
---
--- AUTO_INCREMENT for table `generos`
---
-ALTER TABLE `generos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `grupos`
 --
@@ -1565,11 +1422,6 @@ ALTER TABLE `grupos`
 --
 ALTER TABLE `grupos_programas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `locais`
---
-ALTER TABLE `locais`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `mensagens`
 --
@@ -1591,20 +1443,10 @@ ALTER TABLE `preferencias`
 ALTER TABLE `profissional`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `programacoes`
---
-ALTER TABLE `programacoes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
 -- AUTO_INCREMENT for table `programas`
 --
 ALTER TABLE `programas`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `setores`
---
-ALTER TABLE `setores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `sidemenu`
 --
@@ -1640,13 +1482,6 @@ ALTER TABLE `usuarios_programas`
 --
 
 --
--- Limitadores para a tabela `eventos`
---
-ALTER TABLE `eventos`
-  ADD CONSTRAINT `fk_eventos_generos1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`),
-  ADD CONSTRAINT `fk_eventos_locais1` FOREIGN KEY (`local_id`) REFERENCES `locais` (`id`);
-
---
 -- Limitadores para a tabela `grupos_programas`
 --
 ALTER TABLE `grupos_programas`
@@ -1672,20 +1507,6 @@ ALTER TABLE `notificacoes`
 --
 ALTER TABLE `profissional`
   ADD CONSTRAINT `fk_profissional1` FOREIGN KEY (`tipoprofissional_id`) REFERENCES `tipoprofissional` (`id`);
-
---
--- Limitadores para a tabela `programacoes`
---
-ALTER TABLE `programacoes`
-  ADD CONSTRAINT `fk_programacoes_eventos1` FOREIGN KEY (`evento_id`) REFERENCES `eventos` (`id`),
-  ADD CONSTRAINT `fk_programacoes_generos1` FOREIGN KEY (`genero_id`) REFERENCES `generos` (`id`),
-  ADD CONSTRAINT `fk_programacoes_setores1` FOREIGN KEY (`setor_id`) REFERENCES `setores` (`id`);
-
---
--- Limitadores para a tabela `setores`
---
-ALTER TABLE `setores`
-  ADD CONSTRAINT `fk_setores_locais` FOREIGN KEY (`local_id`) REFERENCES `locais` (`id`);
 
 --
 -- Limitadores para a tabela `usuarios`

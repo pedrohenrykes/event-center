@@ -29,3 +29,24 @@ main {
 .shadowbox {
     box-shadow: 5px 5px 5px #888888;
 }
+
+.light-green.darken-3 {
+   background-color: #122661 !important;
+}
+
+.tabs .tab a {
+    color: #122661 !important;
+}
+
+.tabs .indicator {
+    background-color: #122661 !important;
+}
+
+.green-text.text-darken-4 {
+    color: #122661 !important;
+}
+
+.pagelogo {
+    box-shadow: 0 6px 23px #000;
+    border-radius: 50%;
+}

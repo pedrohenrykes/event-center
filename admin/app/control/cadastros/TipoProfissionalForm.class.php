@@ -20,6 +20,7 @@ class TipoProfissionalForm extends TWindow
         $nometipoprofissional = new TEntry("nometipoprofissional");
 
         $nometipoprofissional->setProperty("title", "O campo e obrigatorio");
+        $nometipoprofissional->forceUpperCase();
         $nometipoprofissional->setSize("38%");
         $nometipoprofissional->addValidation( TextFormat::set( "Nome" ), new TRequiredValidator );
 

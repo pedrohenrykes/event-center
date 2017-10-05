@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 05-Out-2017 às 14:55
+-- Generation Time: 05-Out-2017 às 17:14
 -- Versão do servidor: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -123,7 +123,7 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`id`, `local_id`, `genero_id`, `edicao`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
-(1, 1, 1, 55, 'Festa do Boi', 'Maior evento agropecuário do RN', '2017-09-01', '06:00:00', 3, 'ABERTO');
+(1, 1, 1, 55, 'Festa do Boi 2017', 'Maior evento agropecuário do RN', '2017-09-01', '06:00:00', 3, 'ATIVO');
 
 -- --------------------------------------------------------
 
@@ -984,44 +984,55 @@ CREATE TABLE `grupos_programas` (
 --
 
 INSERT INTO `grupos_programas` (`id`, `system_group_id`, `system_program_id`) VALUES
-(1, 2, 1),
-(2, 2, 2),
-(3, 2, 3),
-(4, 2, 4),
-(5, 2, 5),
-(6, 2, 6),
-(7, 2, 7),
-(8, 2, 8),
-(9, 2, 9),
-(10, 2, 10),
-(11, 2, 11),
-(12, 2, 12),
-(13, 2, 13),
-(14, 2, 14),
-(15, 2, 15),
-(16, 2, 16),
-(17, 2, 17),
-(18, 2, 18),
-(19, 2, 19),
-(20, 2, 20),
-(21, 2, 21),
-(22, 2, 22),
-(23, 2, 23),
-(24, 2, 24),
-(25, 2, 25),
-(26, 2, 26),
-(27, 2, 27),
-(28, 2, 28),
-(29, 2, 29),
-(30, 2, 30),
-(31, 2, 31),
-(32, 2, 32),
-(33, 2, 33),
-(34, 2, 34),
-(35, 2, 35),
-(36, 2, 36),
-(37, 2, 37),
-(38, 2, 38);
+(88, 3, 39),
+(89, 3, 40),
+(90, 3, 41),
+(91, 3, 42),
+(92, 3, 43),
+(93, 3, 44),
+(94, 3, 45),
+(95, 3, 46),
+(96, 3, 47),
+(97, 3, 48),
+(98, 1, 1),
+(99, 1, 17),
+(100, 1, 18),
+(101, 1, 32),
+(102, 2, 2),
+(103, 2, 3),
+(104, 2, 4),
+(105, 2, 5),
+(106, 2, 6),
+(107, 2, 7),
+(108, 2, 8),
+(109, 2, 9),
+(110, 2, 10),
+(111, 2, 11),
+(112, 2, 12),
+(113, 2, 13),
+(114, 2, 14),
+(115, 2, 15),
+(116, 2, 16),
+(117, 2, 19),
+(118, 2, 20),
+(119, 2, 21),
+(120, 2, 22),
+(121, 2, 23),
+(122, 2, 24),
+(123, 2, 25),
+(124, 2, 26),
+(125, 2, 27),
+(126, 2, 28),
+(127, 2, 29),
+(128, 2, 30),
+(129, 2, 31),
+(130, 2, 32),
+(131, 2, 33),
+(132, 2, 34),
+(133, 2, 35),
+(134, 2, 36),
+(135, 2, 37),
+(136, 2, 38);
 
 -- --------------------------------------------------------
 
@@ -1044,7 +1055,7 @@ CREATE TABLE `locais` (
 --
 
 INSERT INTO `locais` (`id`, `nome`, `municipio`, `bairro`, `endereco`, `latitude`, `longitude`) VALUES
-(1, 'Parque de Exposições', 'Parnamirim', 'Centro', 'BR101', -5.904718, -35.260229);
+(1, 'Parque de Exposições Aristófanes Fernandes', 'Parnamirim', 'Centro', 'BR101', -5.904718, -35.260229);
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1130,9 @@ CREATE TABLE `profissional` (
 --
 
 INSERT INTO `profissional` (`id`, `tipoprofissional_id`, `nomeprofissional`, `numeroconselho`, `numerocpf`, `endereco`, `bairro`, `cidade`, `uf`, `telefone1`, `telefone2`, `email`, `situacao`) VALUES
-(1, 1, 'DESENVOLVEDOR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'ATIVO');
+(1, 2, 'PEDRO HENRIQUE', NULL, NULL, NULL, NULL, 'NATAL', NULL, NULL, NULL, NULL, 'ATIVO'),
+(3, 1, 'PEDRO HENRIQUE', NULL, NULL, NULL, NULL, 'NATAL', NULL, NULL, NULL, NULL, NULL),
+(4, 2, 'PEDRITA BEZERRA', NULL, NULL, NULL, NULL, 'NATAL', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1145,7 +1158,6 @@ CREATE TABLE `programacoes` (
 --
 
 INSERT INTO `programacoes` (`id`, `evento_id`, `setor_id`, `genero_id`, `nome`, `descricao`, `data_evento`, `hora_evento`, `duracao`, `situacao`) VALUES
-(1, 1, 6, 2, 'Falando com o governador', 'Debate sobre a agricultura', '2017-09-02', '12:30:00', 1, 'ABERTO'),
 (2, 1, 2, 1, 'Exposição de caprinos', 'Ovelhas e cabras', '2017-09-02', '13:30:00', 2, 'ABERTO'),
 (3, 1, 3, 1, 'Exposição de bovinos', 'Vacas diversas', '2017-09-03', '14:00:00', 2, 'ABERTO'),
 (4, 1, 4, 1, 'Exposição de equinos', 'Melhores cavalos', '2017-09-04', '15:30:00', 2, 'ABERTO'),
@@ -1205,7 +1217,17 @@ INSERT INTO `programas` (`id`, `name`, `controller`) VALUES
 (35, 'Profissionais - Formulário', 'ProfissionalForm'),
 (36, 'Profissionais - Listagem', 'ProfissionalList'),
 (37, 'Tipos de Profissionais - Formulário', 'TipoProfissionalForm'),
-(38, 'Tipos de Profissionais - Listagem', 'TipoProfissionalList');
+(38, 'Tipos de Profissionais - Listagem', 'TipoProfissionalList'),
+(39, 'EventosForm', 'EventosForm'),
+(40, 'EventosList', 'EventosList'),
+(41, 'GenerosForm', 'GenerosForm'),
+(42, 'GenerosList', 'GenerosList'),
+(43, 'LocaisForm', 'LocaisForm'),
+(44, 'LocaisList', 'LocaisList'),
+(45, 'ProgramacoesForm', 'ProgramacoesForm'),
+(46, 'ProgramacoesList', 'ProgramacoesList'),
+(47, 'SetoresForm', 'SetoresForm'),
+(48, 'SetoresList', 'SetoresList');
 
 -- --------------------------------------------------------
 
@@ -1228,8 +1250,7 @@ INSERT INTO `setores` (`id`, `local_id`, `nome`) VALUES
 (2, 1, 'Setor 2'),
 (3, 1, 'Setor 3'),
 (4, 1, 'Setor 4'),
-(5, 1, 'Setor 5'),
-(6, 1, 'Gabinete do Governador');
+(5, 1, 'Setor 5');
 
 -- --------------------------------------------------------
 
@@ -1265,7 +1286,12 @@ INSERT INTO `sidemenu` (`id`, `menu_type`, `name`, `icon`, `sequence`, `action_c
 (10, 'submenu', 'Log de acesso', 'fa-key', 2.2, 'SystemAccessLogList', 8, 'N'),
 (11, 'menu', 'Cadastros', 'fa-leanpub', 3, 'null', 0, 'Y'),
 (12, 'submenu', 'Profissionais', 'fa-user', 3.1, 'ProfissionalList', 11, 'Y'),
-(13, 'submenu', 'Tipos de Profissionais', 'fa-users', 3.2, 'TipoProfissionalList', 11, 'Y');
+(13, 'submenu', 'Tipos de Profissionais', 'fa-users', 3.2, 'TipoProfissionalList', 11, 'Y'),
+(14, 'submenu', 'Eventos', 'fa-bullhorn', 3.3, 'EventosList', 11, 'Y'),
+(15, 'submenu', 'Genêros', 'fa-bullhorn', 3.4, 'GenerosList', 11, 'Y'),
+(16, 'submenu', 'Locais', 'fa-bullhorn', 3.5, 'LocaisList', 11, 'Y'),
+(17, 'submenu', 'Programações', 'fa-bullhorn', 3.6, 'ProgramacoesList', 11, 'Y'),
+(18, 'submenu', 'Setores', 'fa-bullhorn', 3.7, 'SetoresList', 11, 'Y');
 
 -- --------------------------------------------------------
 
@@ -1328,8 +1354,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `name`, `login`, `password`, `email`, `frontpage_id`, `system_unit_id`, `active`, `profissional_id`) VALUES
-(1, 'DESENVOLVEDOR', 'devel', 'daf98543c487af6ceb230cae002c92fd', NULL, NULL, NULL, 'Y', 1),
-(2, 'ADMINISTRADOR', 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, NULL, 'Y', NULL);
+(1, 'DESENVOLVEDOR', 'devel', 'b105c1d3ad540a0fb4635d0d854b08f3', NULL, NULL, NULL, 'Y', 1),
+(2, 'ADMINISTRADOR', 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, NULL, 'N', 3),
+(5, 'PEDRITA BEZERRA', 'pedritabezerra', '86d448956043a207d170a9ab4df0021a', NULL, NULL, NULL, 'Y', 4);
 
 -- --------------------------------------------------------
 
@@ -1348,7 +1375,13 @@ CREATE TABLE `usuarios_grupos` (
 --
 
 INSERT INTO `usuarios_grupos` (`id`, `system_user_id`, `system_group_id`) VALUES
-(1, 1, 2);
+(11, 2, 1),
+(12, 2, 3),
+(13, 1, 1),
+(14, 1, 2),
+(15, 1, 3),
+(16, 5, 1),
+(17, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -1529,7 +1562,7 @@ ALTER TABLE `usuarios_programas`
 -- AUTO_INCREMENT for table `acessos`
 --
 ALTER TABLE `acessos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `adminltecolors`
 --
@@ -1564,7 +1597,7 @@ ALTER TABLE `grupos`
 -- AUTO_INCREMENT for table `grupos_programas`
 --
 ALTER TABLE `grupos_programas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 --
 -- AUTO_INCREMENT for table `locais`
 --
@@ -1589,17 +1622,17 @@ ALTER TABLE `preferencias`
 -- AUTO_INCREMENT for table `profissional`
 --
 ALTER TABLE `profissional`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `programacoes`
 --
 ALTER TABLE `programacoes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `programas`
 --
 ALTER TABLE `programas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `setores`
 --
@@ -1609,27 +1642,27 @@ ALTER TABLE `setores`
 -- AUTO_INCREMENT for table `sidemenu`
 --
 ALTER TABLE `sidemenu`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `tipoprofissional`
 --
 ALTER TABLE `tipoprofissional`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `unidades`
 --
 ALTER TABLE `unidades`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `usuarios_grupos`
 --
 ALTER TABLE `usuarios_grupos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `usuarios_programas`
 --

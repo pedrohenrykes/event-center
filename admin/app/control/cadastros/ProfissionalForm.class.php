@@ -24,7 +24,7 @@ class ProfissionalForm extends TWindow
         $endereco = new TEntry("endereco");
         $bairro = new TEntry("bairro");
         $cidade = new TEntry("cidade");
-        $uf = new TDBCombo ( "uf", "database", "EstadosRecord", "sigla", "estado", "estado" );
+        // $uf = new TDBCombo ( "uf", "database", "EstadosRecord", "sigla", "estado", "estado" );
         $telefone1 = new TEntry("telefone1");
         $telefone2 = new TEntry("telefone2");
         $email = new TEntry("email");
@@ -40,7 +40,7 @@ class ProfissionalForm extends TWindow
         $endereco ->setProperty("title", "O campo e obrigatorio");
         $bairro ->setProperty("title", "O campo e obrigatorio");
         $cidade ->setProperty("title", "O campo e obrigatorio");
-        $uf ->setProperty("title", "O campo e obrigatorio");
+        // $uf ->setProperty("title", "O campo e obrigatorio");
         $telefone1 ->setProperty("title", "O campo e obrigatorio");
         $telefone2 ->setProperty("title", "O campo e obrigatorio");
         $email ->setProperty("title", "O campo e obrigatorio");
@@ -53,7 +53,7 @@ class ProfissionalForm extends TWindow
         $endereco->setSize("38%");
         $bairro->setSize("38%");
         $cidade->setSize("38%");
-        $uf->setSize("38%");
+        // $uf->setSize("38%");
         $telefone1->setSize("38%");
         $telefone2->setSize("38%");
         $email->setSize("38%");
@@ -63,7 +63,7 @@ class ProfissionalForm extends TWindow
         $situacao->addItems([ 'ATIVO'=>'ATIVO','INATIVO'=>'INATIVO']);
 
         $cidade->setValue( "NATAL" );
-        $uf->setValue( "RN" );
+        // $uf->setValue( "RN" );
 
         $numerocpf->setMask( "999.999.999-99" );
         $telefone1->setMask( "(99)99999-9999" );
@@ -75,18 +75,18 @@ class ProfissionalForm extends TWindow
         $bairro->forceUpperCase();
         $cidade->forceUpperCase();
 
-        $nomeprofissional->addValidation( TextFormat::set( "Nome do Profissional" ), new TRequiredValidator );
-        $tipoprofissional_id->addValidation( TextFormat::set( "Tipo de Profissional" ), new TRequiredValidator );
-        $numeroconselho->addValidation( TextFormat::set( "Numero do Conselho" ), new TRequiredValidator );
-        $numerocpf->addValidation( TextFormat::set( "CPF" ), new TRequiredValidator );
-        $endereco->addValidation( TextFormat::set( "Endereço" ), new TRequiredValidator );
-        $bairro->addValidation( TextFormat::set( "Bairro" ), new TRequiredValidator );
-        $cidade->addValidation( TextFormat::set( "Cidade" ), new TRequiredValidator );
-        $uf->addValidation( TextFormat::set( "UF" ), new TRequiredValidator );
-        $telefone1->addValidation( TextFormat::set( "Telefone" ), new TRequiredValidator );
-        $telefone2->addValidation( TextFormat::set( "Telefone" ), new TRequiredValidator );
-        $email->addValidation( TextFormat::set( "E-mail" ), new TRequiredValidator );
-        $situacao->addValidation( TextFormat::set( "Situacao" ), new TRequiredValidator );
+        // $nomeprofissional->addValidation( TextFormat::set( "Nome do Profissional" ), new TRequiredValidator );
+        // $tipoprofissional_id->addValidation( TextFormat::set( "Tipo de Profissional" ), new TRequiredValidator );
+        // $numeroconselho->addValidation( TextFormat::set( "Numero do Conselho" ), new TRequiredValidator );
+        // $numerocpf->addValidation( TextFormat::set( "CPF" ), new TRequiredValidator );
+        // $endereco->addValidation( TextFormat::set( "Endereço" ), new TRequiredValidator );
+        // $bairro->addValidation( TextFormat::set( "Bairro" ), new TRequiredValidator );
+        // $cidade->addValidation( TextFormat::set( "Cidade" ), new TRequiredValidator );
+        // $uf->addValidation( TextFormat::set( "UF" ), new TRequiredValidator );
+        // $telefone1->addValidation( TextFormat::set( "Telefone" ), new TRequiredValidator );
+        // $telefone2->addValidation( TextFormat::set( "Telefone" ), new TRequiredValidator );
+        // $email->addValidation( TextFormat::set( "E-mail" ), new TRequiredValidator );
+        // $situacao->addValidation( TextFormat::set( "Situacao" ), new TRequiredValidator );
 
         $this->form->addFields([new TLabel("Nome do Profissional: $redstar")], [$nomeprofissional]);
         $this->form->addFields([new TLabel("Tipo de Profissional: $redstar")], [$tipoprofissional_id]);
@@ -95,7 +95,7 @@ class ProfissionalForm extends TWindow
         $this->form->addFields([new TLabel("Endereço: $redstar")], [$endereco]);
         $this->form->addFields([new TLabel("Bairro: $redstar")], [$bairro]);
         $this->form->addFields([new TLabel("Cidade: $redstar")], [$cidade]);
-        $this->form->addFields([new TLabel("UF: $redstar")], [$uf]);
+        // $this->form->addFields([new TLabel("UF: $redstar")], [$uf]);
         $this->form->addFields([new TLabel("Telefone: $redstar")], [$telefone1]);
         $this->form->addFields([new TLabel("Telefone: $redstar")], [$telefone2]);
         $this->form->addFields([new TLabel("E-mail: $redstar")], [$email]);

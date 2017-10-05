@@ -24,7 +24,7 @@ class ProfissionalList extends TPage
         $opcao->setSize( "38%" );
         $dados->setSize( "38%" );
 
-        $opcao->addItems( [ "nomeprofissional" => "Profissional", "numeroconselho" => "Conselho","tipoprofissional_id" => " Tipo de Profissional" ] );
+        $opcao->addItems( [ "nomeprofissional" => "Profissional" ] );
 
         $this->form->addFields( [ new TLabel( "Opção de busca:" ) ], [ $opcao ] );
         $this->form->addFields( [ new TLabel( "Dados à buscar:" )  ], [ $dados ] );
@@ -38,11 +38,11 @@ class ProfissionalList extends TPage
         $this->datagrid->setHeight( 320 );
 
         $column_nomeprofissional = new TDataGridColumn( "nomeprofissional", "Profissional", "left" );
-        $column_numeroconselho       = new TDataGridColumn( "numeroconselho", "Numero do Conselho", "left" );
-        $column_tipoprofissional_id  = new TDataGridColumn( "tipo_profissional", "Tipo de Profissional", "left" );
+        // $column_numeroconselho       = new TDataGridColumn( "numeroconselho", "Numero do Conselho", "left" );
+        $column_tipoprofissional_id  = new TDataGridColumn( "tipoprofissional_nome", "Tipo de Profissional", "left" );
 
         $this->datagrid->addColumn( $column_nomeprofissional );
-        $this->datagrid->addColumn( $column_numeroconselho );
+        // $this->datagrid->addColumn( $column_numeroconselho );
         $this->datagrid->addColumn( $column_tipoprofissional_id );
 
         $action_edit = new TDataGridAction( [ "ProfissionalForm", "onEdit" ] );

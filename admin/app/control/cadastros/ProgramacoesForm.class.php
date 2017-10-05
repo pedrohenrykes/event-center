@@ -13,8 +13,10 @@ class ProgramacoesForm extends TWindow
         parent::setSize( 0.600, 0.800 );
 
         $this->form = new BootstrapFormBuilder('form_programacoes');
-		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">Formul&aacute;rio de Programações</b>');
+		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">* Campos obrigat&oacute;rios</b>');
         $this->form->class = 'tform';
+		
+		$redstar = '<font color="red"><b>*</b></font>';
 
         $id = new THidden('id');
         $evento_id = new TDBCombo('evento_id', 'festadoboi', 'EventosRecord', 'id', 'nome');
@@ -30,7 +32,18 @@ class ProgramacoesForm extends TWindow
         $nome->setMaxLength(100);
         $descricao->setMaxLength(1500);
 		
-		$situacao->addItems(['ATIVO' => 'ATIVO', 'INATIVO' => 'INATIVO']);
+		$hora_evento->setProperty('type', 'time');
+		
+		$duracao->setMask('99');
+		
+		$evento_id->setDefaultOption( "..::SELECIONE::.." );
+		$setor_id->setDefaultOption( "..::SELECIONE::.." );
+		$genero_id->setDefaultOption( "..::SELECIONE::.." );
+		$situacao->setDefaultOption( "..::SELECIONE::.." );
+		
+		$situacao->addItems(['ABERTO' => 'ABERTO', 'CANCELADO' => 'CANCELADO', 'FINALIZADO' => 'FINALIZADO']);
+		
+		$duracao->setProperty( "title", "Em horas" );
 
         $evento_id->addValidation('Local' , new TRequiredValidator);
 		$setor_id->addValidation('Setor' , new TRequiredValidator);
@@ -42,24 +55,16 @@ class ProgramacoesForm extends TWindow
         $duracao->addValidation('Duração' , new TRequiredValidator);
         $situacao->addValidation('Situação' , new TRequiredValidator);
 
-        $titulo = new TLabel('* Campos obrigat&oacute;rios');
-        $titulo->setFontFace('Arial');
-        $titulo->setFontColor('red');
-        $titulo->setFontStyle('b');
-        $titulo->setFontSize(10);
-
-        $this->form->addFields([new TLabel('')], [$id]);
-        $this->form->addFields([new TLabel('Evento <b style="color: red;">*</b>')], [$evento_id]);
-		$this->form->addFields([new TLabel('Setor <b style="color: red;">*</b>')], [$setor_id]);
-        $this->form->addFields([new TLabel('Gênero <b style="color: red;">*</b>')], [$genero_id]);
-        $this->form->addFields([new TLabel('Nome <b style="color: red;">*</b>')], [$nome]);
-        $this->form->addFields([new TLabel('Descrição <b style="color: red;">*</b>')], [$descricao]);
-        $this->form->addFields([new TLabel('Data do Evento <b style="color: red;">*</b>')], [$data_evento]);
-        $this->form->addFields([new TLabel('Hora do Evento <b style="color: red;">*</b>')], [$hora_evento]);
-        $this->form->addFields([new TLabel('Duração <b style="color: red;">*</b>')], [$duracao]);
-        $this->form->addFields([new TLabel('Situação <b style="color: red;">*</b>')], [$situacao]);
-
-        $this->form->addFields([$titulo]);
+        $this->form->addFields([$id]);
+        $this->form->addFields([new TLabel("Evento  {$redstar}")], [$evento_id]);
+		$this->form->addFields([new TLabel("Setor  {$redstar}")], [$setor_id]);
+        $this->form->addFields([new TLabel("Gênero  {$redstar}")], [$genero_id]);
+        $this->form->addFields([new TLabel("Nome  {$redstar}")], [$nome]);
+        $this->form->addFields([new TLabel("Descrição  {$redstar}")], [$descricao]);
+        $this->form->addFields([new TLabel("Data do Evento  {$redstar}")], [$data_evento]);
+        $this->form->addFields([new TLabel("Hora do Evento  {$redstar}")], [$hora_evento]);
+        $this->form->addFields([new TLabel("Duração  {$redstar}")], [$duracao]);
+        $this->form->addFields([new TLabel("Situação  {$redstar}")], [$situacao]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';
         $this->form->addAction('Voltar', new TAction(array('ProgramacoesList', 'onReload')), 'ico_datagrid.gif');

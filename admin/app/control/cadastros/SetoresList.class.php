@@ -28,7 +28,7 @@ class SetoresList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['local_id'] = 'Local';
+        $items['nome'] = 'Nome';
 
         $opcao->addItems($items);
 

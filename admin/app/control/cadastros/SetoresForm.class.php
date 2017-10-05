@@ -13,29 +13,25 @@ class SetoresForm extends TWindow
         parent::setSize( 0.600, 0.800 );
 
         $this->form = new BootstrapFormBuilder('form_setores');
-		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">Formul&aacute;rio de Setores</b>');
+		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">* Campos obrigat&oacute;rios</b>');
         $this->form->class = 'tform';
+		
+		$redstar = '<font color="red"><b>*</b></font>';
 
         $id = new THidden('id');
         $local_id = new TDBCombo('local_id', 'festadoboi', 'LocaisRecord', 'id', 'nome');
         $nome = new TEntry('nome');
 
         $nome->setMaxLength(50);
+		
+		$local_id->setDefaultOption( "..::SELECIONE::.." );
 
         $local_id->addValidation('Local' , new TRequiredValidator);
         $nome->addValidation('Nome do Setor' , new TRequiredValidator);
 
-        $titulo = new TLabel('* Campos obrigat&oacute;rios');
-        $titulo->setFontFace('Arial');
-        $titulo->setFontColor('red');
-        $titulo->setFontStyle('b');
-        $titulo->setFontSize(10);
-
         $this->form->addFields([$id]);
-        $this->form->addFields([new TLabel('Local <b style="color: red;">*</b>')], [$local_id]);
-        $this->form->addFields([new TLabel('Nome do Setor <b style="color: red;">*</b>')], [$nome]);
-
-        $this->form->addFields([$titulo]);
+        $this->form->addFields([new TLabel("Local {$redstar}")], [$local_id]);
+        $this->form->addFields([new TLabel("Nome do Setor {$redstar}")], [$nome]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';
         $this->form->addAction('Voltar', new TAction(array('LocaisList', 'onReload')), 'ico_datagrid.gif');

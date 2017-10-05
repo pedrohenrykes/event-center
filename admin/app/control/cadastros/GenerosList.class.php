@@ -28,7 +28,7 @@ class GenerosList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['nome'] = 'Nome do Gênero';
+        $items['nome'] = 'Nome';
 
         $opcao->addItems($items);
 
@@ -43,7 +43,7 @@ class GenerosList extends TPage
         $this->datagrid->style = "width: 100%";
         $this->datagrid->setHeight( 320 );
 		
-		$column_nome = new TDataGridColumn( "nome", "Nome do Gênero", "left" );
+		$column_nome = new TDataGridColumn( "nome", "Nome", "left" );
 
         $this->datagrid->addColumn( $column_nome );
         $actionEdit = new TDataGridAction(array('GenerosForm', 'onEdit'));

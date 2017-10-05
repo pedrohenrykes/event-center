@@ -13,8 +13,10 @@ class GenerosForm extends TWindow
         parent::setSize( 0.600, 0.800 );
 
         $this->form = new BootstrapFormBuilder('form_generos');
-		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">Formul&aacute;rio de Gêneros</b>');
+		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">* Campos obrigat&oacute;rios</b>');
         $this->form->class = 'tform';
+		
+		$redstar = '<font color="red"><b>*</b></font>';
 
         $id = new THidden('id');
         $nome = new TEntry('nome');
@@ -23,16 +25,8 @@ class GenerosForm extends TWindow
 
         $nome->addValidation('Nome do Gênero' , new TRequiredValidator);
 
-        $titulo = new TLabel('* Campos obrigat&oacute;rios');
-        $titulo->setFontFace('Arial');
-        $titulo->setFontColor('red');
-        $titulo->setFontStyle('b');
-        $titulo->setFontSize(10);
-
         $this->form->addFields([$id]);
-        $this->form->addFields([new TLabel('Nome do Gênero <b style="color: red;">*</b>')], [$nome]);
-
-        $this->form->addFields([$titulo]);
+        $this->form->addFields([new TLabel("Nome do Gênero {$redstar}")], [$nome]);
 
         $this->form->addAction( "Salvar", new TAction( [ $this, "onSave" ] ), "fa:floppy-o" );
         $this->form->addAction( "Voltar", new TAction( [ "GenerosList", "onReload" ] ), "fa:table blue" );

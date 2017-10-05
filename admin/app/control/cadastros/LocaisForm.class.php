@@ -13,8 +13,10 @@ class LocaisForm extends TWindow
         parent::setSize( 0.600, 0.800 );
 
         $this->form = new BootstrapFormBuilder('form_locais');
-		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">Formul&aacute;rio de Locais</b>');
+		$this->form->setFormTitle('<b style="color: red; font-size: 15px; font-family: Arial;">* Campos obrigat&oacute;rios</b>');
         $this->form->class = 'tform';
+		
+		$redstar = '<font color="red"><b>*</b></font>';
 		
         $id = new THidden('id');
         $nome = new TEntry('nome');
@@ -35,21 +37,13 @@ class LocaisForm extends TWindow
         $latitude->addValidation('Latitude' , new TRequiredValidator);
         $longitude->addValidation('Longitude' , new TRequiredValidator);
 
-        $titulo = new TLabel('* Campos obrigat&oacute;rios');
-        $titulo->setFontFace('Arial');
-        $titulo->setFontColor('red');
-        $titulo->setFontStyle('b');
-        $titulo->setFontSize(10);
-
         $this->form->addFields([$id]);
-        $this->form->addFields([new TLabel('Nome <b style="color: red;">*</b>')], [$nome]);
-        $this->form->addFields([new TLabel('Município <b style="color: red;">*</b>')], [$municipio]);
-        $this->form->addFields([new TLabel('Bairro <b style="color: red;">*</b>')], [$bairro]);
-        $this->form->addFields([new TLabel('Endereço <b style="color: red;">*</b>')], [$endereco]);
-        $this->form->addFields([new TLabel('Latitude <b style="color: red;">*</b>')], [$latitude]);
-        $this->form->addFields([new TLabel('Longitude <b style="color: red;">*</b>')], [$longitude]);
-
-        $this->form->addFields([$titulo]);
+        $this->form->addFields([new TLabel("Nome {$redstar}")], [$nome]);
+        $this->form->addFields([new TLabel("Município {$redstar}")], [$municipio]);
+        $this->form->addFields([new TLabel("Bairro {$redstar}")], [$bairro]);
+        $this->form->addFields([new TLabel("Endereço {$redstar}")], [$endereco]);
+        $this->form->addFields([new TLabel("Latitude {$redstar}")], [$latitude]);
+        $this->form->addFields([new TLabel("Longitude {$redstar}")], [$longitude]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';
         $this->form->addAction('Voltar', new TAction(array('LocaisList', 'onReload')), 'ico_datagrid.gif');

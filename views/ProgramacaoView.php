@@ -10,17 +10,15 @@
 <section>
 
   <?php
+    require_once "controls/ProgramacaoControl.php";
 
-  require_once "controls/ProgramacaoControl.php";
+    $objects = ProgramacaoControl::getData();
 
-  $objects = ProgramacaoControl::getData();
-
-  $tabs = [];
-  foreach ( $objects as $object ) {
-      $data = date( "d/m", strtotime( $object["data_evento"] ) );
-      $tabs[ $data ] = $data;
-  }
-
+    $tabs = [];
+    foreach ( $objects as $object ) {
+        $data = date( "d/m", strtotime( $object["data_evento"] ) );
+        $tabs[ $object["data_evento"] ] = $data;
+    }
   ?>
 
   <div class="row">
@@ -28,8 +26,15 @@
       <div class="section scrollspy">
         <ul class="tabs tab-demo z-depth-1">
 
-          <?php foreach ( $tabs as $tab ): ?>
-              <li class="tab col s3"><a href="#<?= str_replace( "/", "_", $tab ); ?>"><?= $tab ?></a></li>
+          <?php foreach ( $tabs as $key => $tab ): ?>
+            <li class="tab col s3">
+              <a href="#<?= str_replace( '/', '_', $tab ); ?>">
+                <?=
+                  substr( strftime( '%A - ', strtotime( $key ) ), 0, 3 ) . ' - ' .
+                  strftime( '%d/%m', strtotime( $key ) );
+                ?>
+              </a>
+            </li>
           <?php endforeach; ?>
 
         </ul>
@@ -57,20 +62,28 @@
                   <div class="row">
                     <div class="col s12  l6">
                       <div class="intro-message left-align green-text text-darken-4 ">
-                        <h5>Agenda</h5>
+                        <h5>Horário</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-                      <span><b>Localizado no: </b> <?= $object["setor_nome"]; ?> </span><br>
-                      <span><b>A partir das:</b> <?= date( "H:i", strtotime( $object["hora_evento"] ) ); ?> </span><br>
+                      <span><b> <?= date( "H:i", strtotime( $object["hora_inicio"] ) ) . " às " . date( "H:i", strtotime( $object["hora_fim"] ) ); ?> </b></span><br>
+                      <div class="intro-message left-align green-text text-darken-4 ">
+                        <h5>Local</h5>
+                        <hr class="intro-divider"><a></a>
+                      </div>
+                      <span><b> <?= $object["setor_nome"]; ?> </b></span><br> <?= $object["setor_descricao"]; ?> <br>
                       <div class="intro-message left-align green-text text-darken-4 ">
                         <h5>Sobre</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-                      <span> <?= $object["descricao"]; ?> </span><br>
+                      <span><b> <?= $object["descricao"]; ?> </b></span><br>
                     </div>
-                    <!--<div class="col s12 l6">
-                      <img class="materialboxed" width="100%" src="http://www.hotel-r.net/im/hotel/es/el-parque-13.png" >
-                    </div>-->
+                    <div class="col s12 l6">
+                      <div class="intro-message left-align green-text text-darken-4 ">
+                        <h5>Fotos</h5>
+                        <hr class="intro-divider"><a></a>
+                      </div>
+                      <img class="materialboxed" width="100%" src="resources/app/img/no-photo.png" >
+                    </div>
                   </div>
                 </div>
               </li>

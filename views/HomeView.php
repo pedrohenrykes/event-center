@@ -106,6 +106,12 @@
       </a>
     </div>
 
+    <div class="col  m3 s6 center-align">
+      <a href="#">
+        <img height="100px" src="resources/app/img/ceres.png" alt="">
+      </a>
+    </div>
+
   <div/>
 
 <section/>

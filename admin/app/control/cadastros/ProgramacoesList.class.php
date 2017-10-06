@@ -48,7 +48,8 @@ class ProgramacoesList extends TPage
         $dggenero_nome = new TDataGridColumn('genero_nome', 'Gênero', 'left', 200);
         $dgnome = new TDataGridColumn('nome', 'Nome', 'left', 200);
         $dgdata_evento = new TDataGridColumn('data_evento', 'Data do Evento', 'left', 200);
-        $dghora_evento = new TDataGridColumn('hora_evento', 'Hora do Evento', 'left', 200);
+        $dghora_inicio = new TDataGridColumn('hora_inicio', 'Hora de Início', 'left', 200);
+		$dghora_fim = new TDataGridColumn('hora_fim', 'Hora de Fim', 'left', 200);
         $dgsituacao = new TDataGridColumn('situacao', 'Situação', 'left', 200);
 
         $this->datagrid->addColumn($dgevento_nome);
@@ -56,7 +57,8 @@ class ProgramacoesList extends TPage
         $this->datagrid->addColumn($dggenero_nome);
         $this->datagrid->addColumn($dgnome);
         $this->datagrid->addColumn($dgdata_evento);
-        $this->datagrid->addColumn($dghora_evento);
+        $this->datagrid->addColumn($dghora_inicio);
+		$this->datagrid->addColumn($dghora_fim);
         $this->datagrid->addColumn($dgsituacao);
 
         $actionEdit = new TDataGridAction(array('ProgramacoesForm', 'onEdit'));
@@ -100,7 +102,12 @@ class ProgramacoesList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
-				$cadastro->data_evento = TDate::date2br($cadastro->data_evento);
+				$data_evento = new DateTime( $cadastro->data_evento );
+				$hora_inicio = new DateTime( $cadastro->hora_inicio );
+				$hora_fim = new DateTime( $cadastro->hora_fim );
+				$cadastro->data_evento = $data_evento->format("d/m/Y");
+				$cadastro->hora_inicio = $hora_inicio->format("H:i");
+				$cadastro->hora_fim = $hora_fim->format("H:i");
                 $this->datagrid->addItem($cadastro);
             }
         }

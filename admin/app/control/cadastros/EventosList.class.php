@@ -101,8 +101,10 @@ class EventosList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
-				$cadastro->data_inicio = TDate::date2br($cadastro->data_inicio);
-				$cadastro->data_fim = TDate::date2br($cadastro->data_fim);
+				$data_inicio = new DateTime( $cadastro->data_inicio );
+				$data_fim = new DateTime( $cadastro->data_fim );
+				$cadastro->data_inicio = $data_inicio->format("d/m/Y");
+				$cadastro->data_fim = $data_fim->format("d/m/Y");
                 $this->datagrid->addItem($cadastro);
             }
         }

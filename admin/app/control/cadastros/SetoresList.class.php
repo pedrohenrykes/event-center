@@ -45,9 +45,11 @@ class SetoresList extends TPage
 
         $dglocal_nome = new TDataGridColumn('local_nome', 'Local', 'left', 200);
         $dgnome = new TDataGridColumn('nome', 'Nome do Setor', 'left', 200);
+		$dgdescricao = new TDataGridColumn('descricao', 'Descrição do Setor', 'left', 200);
 
         $this->datagrid->addColumn($dglocal_nome);
         $this->datagrid->addColumn($dgnome);
+		$this->datagrid->addColumn($dgdescricao);
 
         $actionEdit = new TDataGridAction(array('SetoresForm', 'onEdit'));
         $actionEdit->setLabel('Editar');

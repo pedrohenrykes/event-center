@@ -24,22 +24,31 @@ class EventosForm extends TWindow
         $descricao = new TText('descricao');
         $data_inicio = new TDate('data_inicio');
         $data_fim = new TDate('data_fim');
-        $duracao = new TEntry('duracao');
         $situacao = new TCombo('situacao');
 
         $nome->setMaxLength(100);
-        //$descricao->setMaxLength(1500);
-		
-		$duracao->setMask('99');
 		
 		$local_id->setDefaultOption( "..::SELECIONE::.." );
 		$genero_id->setDefaultOption( "..::SELECIONE::.." );
 		$situacao->setDefaultOption( "..::SELECIONE::.." );
 		
+		$data_inicio->setMask('dd/mm/yyyy');
+		$data_inicio->setDatabaseMask('yyyy-mm-dd');
+		$data_fim->setMask('dd/mm/yyyy');
+		$data_fim->setDatabaseMask('yyyy-mm-dd');
+		
+		$local_id->setSize(300);
+        $genero_id->setSize(300);
+        $edicao->setSize(300);
+        $nome->setSize(300);
+        $descricao->setSize(300);
+        $data_inicio->setSize(300);
+        $data_fim->setSize(300);
+        $situacao->setSize(300);
+		
 		$situacao->addItems(['ABERTO' => 'ABERTO', 'CANCELADO' => 'CANCELADO', 'FINALIZADO' => 'FINALIZADO']);
 		
 		$edicao->setProperty( "title", "Ex: 26ª" );
-		$duracao->setProperty( "title", "Em horas" );
 
         $local_id->addValidation('Local' , new TRequiredValidator);
         $genero_id->addValidation('Gênero' , new TRequiredValidator);
@@ -48,18 +57,16 @@ class EventosForm extends TWindow
         $descricao->addValidation('Descrição' , new TRequiredValidator);
         $data_inicio->addValidation('Data de Início' , new TRequiredValidator);
         $data_fim->addValidation('Data de Fim' , new TRequiredValidator);
-        $duracao->addValidation('Duração(horas)' , new TRequiredValidator);
         $situacao->addValidation('Situação' , new TRequiredValidator);
 
         $this->form->addFields([$id]);
+		$this->form->addFields([new TLabel("Nome {$redstar}")], [$nome]);
+        $this->form->addFields([new TLabel("Descrição {$redstar}")], [$descricao]);
         $this->form->addFields([new TLabel("Local {$redstar}")], [$local_id]);
         $this->form->addFields([new TLabel("Gênero {$redstar}")], [$genero_id]);
         $this->form->addFields([new TLabel("Edição {$redstar}")], [$edicao]);
-        $this->form->addFields([new TLabel("Nome {$redstar}")], [$nome]);
-        $this->form->addFields([new TLabel("Descrição {$redstar}")], [$descricao]);
         $this->form->addFields([new TLabel("Data de Início {$redstar}")], [$data_inicio]);
         $this->form->addFields([new TLabel("Data de Fim {$redstar}")], [$data_fim]);
-        $this->form->addFields([new TLabel("Duração(horas) {$redstar}")], [$duracao]);
         $this->form->addFields([new TLabel("Situação {$redstar}")], [$situacao]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';

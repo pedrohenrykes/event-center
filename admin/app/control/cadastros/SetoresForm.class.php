@@ -21,17 +21,24 @@ class SetoresForm extends TWindow
         $id = new THidden('id');
         $local_id = new TDBCombo('local_id', 'database', 'LocaisRecord', 'id', 'nome');
         $nome = new TEntry('nome');
+		$descricao = new TText('descricao');
 
         $nome->setMaxLength(50);
+		
+		$local_id->setSize(300);
+		$nome->setSize(300);
+		$descricao->setSize(300);
 		
 		$local_id->setDefaultOption( "..::SELECIONE::.." );
 
         $local_id->addValidation('Local' , new TRequiredValidator);
         $nome->addValidation('Nome do Setor' , new TRequiredValidator);
+		$descricao->addValidation('Descrição do Setor' , new TRequiredValidator);
 
         $this->form->addFields([$id]);
+		$this->form->addFields([new TLabel("Nome do Setor {$redstar}")], [$nome]);
+		$this->form->addFields([new TLabel("Descrição do Setor {$redstar}")], [$descricao]);
         $this->form->addFields([new TLabel("Local {$redstar}")], [$local_id]);
-        $this->form->addFields([new TLabel("Nome do Setor {$redstar}")], [$nome]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';
         $this->form->addAction('Voltar', new TAction(array('LocaisList', 'onReload')), 'ico_datagrid.gif');

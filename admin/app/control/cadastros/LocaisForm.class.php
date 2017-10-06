@@ -29,6 +29,13 @@ class LocaisForm extends TWindow
         $nome->setMaxLength(100);
         $bairro->setMaxLength(100);
         $endereco->setMaxLength(100);
+		
+		$nome->setSize(300);
+		$municipio->setSize(300);
+		$bairro->setSize(300);
+		$endereco->setSize(300);
+		$latitude->setSize(300);
+		$longitude->setSize(300);
 
         $nome->addValidation('Nome' , new TRequiredValidator);
         $municipio->addValidation('Município' , new TRequiredValidator);

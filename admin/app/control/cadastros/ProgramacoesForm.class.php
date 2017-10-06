@@ -23,18 +23,30 @@ class ProgramacoesForm extends TWindow
 		$setor_id = new TDBCombo('setor_id', 'database', 'SetoresRecord', 'id', 'nome');
         $genero_id = new TDBCombo('genero_id', 'database', 'GenerosRecord', 'id', 'nome');
         $nome = new TEntry('nome');
-        $descricao = new TEntry('descricao');
+        $descricao = new TText('descricao');
         $data_evento = new TDate('data_evento');
-        $hora_evento = new TEntry('hora_evento');
-        $duracao = new TEntry('duracao');
+        $hora_inicio = new TEntry('hora_inicio');
+		$hora_fim = new TEntry('hora_fim');
         $situacao = new TCombo('situacao');
 
         $nome->setMaxLength(100);
         $descricao->setMaxLength(1500);
 		
-		$hora_evento->setProperty('type', 'time');
+		$evento_id->setSize(300);
+        $setor_id->setSize(300);
+		$genero_id->setSize(300);
+        $nome->setSize(300);
+		$descricao->setSize(300);
+		$data_evento->setSize(300);
+		$hora_inicio->setSize(300);
+		$hora_fim->setSize(300);
+		$situacao->setSize(300);
 		
-		$duracao->setMask('99');
+		$data_evento->setMask('dd/mm/yyyy');
+		$data_evento->setDatabaseMask('yyyy-mm-dd');
+		
+		$hora_inicio->setProperty('type', 'time');
+		$hora_fim->setProperty('type', 'time');
 		
 		$evento_id->setDefaultOption( "..::SELECIONE::.." );
 		$setor_id->setDefaultOption( "..::SELECIONE::.." );
@@ -42,8 +54,6 @@ class ProgramacoesForm extends TWindow
 		$situacao->setDefaultOption( "..::SELECIONE::.." );
 		
 		$situacao->addItems(['ABERTO' => 'ABERTO', 'CANCELADO' => 'CANCELADO', 'FINALIZADO' => 'FINALIZADO']);
-		
-		$duracao->setProperty( "title", "Em horas" );
 
         $evento_id->addValidation('Local' , new TRequiredValidator);
 		$setor_id->addValidation('Setor' , new TRequiredValidator);
@@ -51,19 +61,19 @@ class ProgramacoesForm extends TWindow
         $nome->addValidation('Nome' , new TRequiredValidator);
         $descricao->addValidation('Descrição' , new TRequiredValidator);
         $data_evento->addValidation('Data do Evento' , new TRequiredValidator);
-        $hora_evento->addValidation('Hora do Evento' , new TRequiredValidator);
-        $duracao->addValidation('Duração' , new TRequiredValidator);
+        $hora_inicio->addValidation('Hora de Início' , new TRequiredValidator);
+		$hora_fim->addValidation('Hora de Fim' , new TRequiredValidator);
         $situacao->addValidation('Situação' , new TRequiredValidator);
 
         $this->form->addFields([$id]);
+		$this->form->addFields([new TLabel("Nome  {$redstar}")], [$nome]);
+        $this->form->addFields([new TLabel("Descrição  {$redstar}")], [$descricao]);
         $this->form->addFields([new TLabel("Evento  {$redstar}")], [$evento_id]);
 		$this->form->addFields([new TLabel("Setor  {$redstar}")], [$setor_id]);
         $this->form->addFields([new TLabel("Gênero  {$redstar}")], [$genero_id]);
-        $this->form->addFields([new TLabel("Nome  {$redstar}")], [$nome]);
-        $this->form->addFields([new TLabel("Descrição  {$redstar}")], [$descricao]);
         $this->form->addFields([new TLabel("Data do Evento  {$redstar}")], [$data_evento]);
-        $this->form->addFields([new TLabel("Hora do Evento  {$redstar}")], [$hora_evento]);
-        $this->form->addFields([new TLabel("Duração  {$redstar}")], [$duracao]);
+        $this->form->addFields([new TLabel("Hora de Início  {$redstar}")], [$hora_inicio]);
+		$this->form->addFields([new TLabel("Hora de Fim  {$redstar}")], [$hora_fim]);
         $this->form->addFields([new TLabel("Situação  {$redstar}")], [$situacao]);
 
         $this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';

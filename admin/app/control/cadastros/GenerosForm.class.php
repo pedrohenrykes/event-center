@@ -22,6 +22,8 @@ class GenerosForm extends TWindow
         $nome = new TEntry('nome');
 
         $nome->setMaxLength(100);
+		
+		$nome->setSize(300);
 
         $nome->addValidation('Nome do Gênero' , new TRequiredValidator);
 

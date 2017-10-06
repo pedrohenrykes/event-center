@@ -29,6 +29,7 @@ class LocaisList extends TPage
 
         $items = array();
         $items['nome'] = 'Nome';
+		$items['municipio'] = 'Município';
 
         $opcao->addItems($items);
 

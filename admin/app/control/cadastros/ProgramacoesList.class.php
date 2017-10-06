@@ -28,7 +28,7 @@ class ProgramacoesList extends TPage
         $dados->setSize( "38%" );
 
         $items = array();
-        $items['local_id'] = 'Local';
+        $items['nome'] = 'Nome';
 
         $opcao->addItems($items);
 
@@ -100,6 +100,7 @@ class ProgramacoesList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
+				$cadastro->data_evento = TDate::date2br($cadastro->data_evento);
                 $this->datagrid->addItem($cadastro);
             }
         }

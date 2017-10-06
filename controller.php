@@ -3,8 +3,8 @@
 date_default_timezone_set( "America/Recife" );
 
 $MenuOptions = [
-    "Programação" => "index.php",
-    "Sobre a festa" => "index.php"
+    "Programação" => "Programacao",
+    "Sobre a festa" => "Sobre"
 ];
 
 function setMain( $page )
@@ -12,7 +12,7 @@ function setMain( $page )
     if ( !empty( $page ) &&  file_exists( "views/{$page}View.php" ) ) {
         require_once "views/{$page}View.php";
     } else {
-        require_once "views/ProgramacaoView.php";
+        require_once "views/HomeView.php";
     }
 }
 
@@ -24,7 +24,7 @@ function setHeader()
 
     $options = "";
     foreach ( $MenuOptions as $page => $option ) {
-       $options .= '<li><a href="'.$option.'">'.$page.'</a></li>';
+       $options .= '<li><a href="index.php?page='.$option.'">'.$page.'</a></li>';
     }
 
     $header = str_replace( "{OPTIONS}", $options, $header );

@@ -60,17 +60,17 @@
                         <h5>Agenda</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-                      <span><b>LOCAL: </b> <?= $object["setor_nome"]; ?> </span><br>
-                      <span><b>HORÁRIO: </b> <?= date( "H:i", strtotime( $object["hora_evento"] ) ); ?> </span><br>
+                      <span><b>Localizado no: </b> <?= $object["setor_nome"]; ?> </span><br>
+                      <span><b>A partir das:</b> <?= date( "H:i", strtotime( $object["hora_evento"] ) ); ?> </span><br>
                       <div class="intro-message left-align green-text text-darken-4 ">
                         <h5>Sobre</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
                       <span> <?= $object["descricao"]; ?> </span><br>
                     </div>
-                    <div class="col s12 l6">
+                    <!--<div class="col s12 l6">
                       <img class="materialboxed" width="100%" src="http://www.hotel-r.net/im/hotel/es/el-parque-13.png" >
-                    </div>
+                    </div>-->
                   </div>
                 </div>
               </li>

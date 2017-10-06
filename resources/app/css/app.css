@@ -50,3 +50,11 @@ main {
     box-shadow: 0 6px 23px #000;
     border-radius: 50%;
 }
+
+.slider .slides {
+    border-radius: 15px !important;
+}
+
+.slider .slides li {
+    border-radius: 15px !important;
+}

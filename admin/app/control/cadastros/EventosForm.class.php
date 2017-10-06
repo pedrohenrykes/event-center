@@ -2,12 +2,10 @@
 
 class EventosForm extends TWindow
 {
-
     private $form;
 
     public function __construct()
     {
-
         parent::__construct();
 		parent::setTitle( "Cadastro de Eventos" );
         parent::setSize( 0.600, 0.800 );
@@ -24,15 +22,13 @@ class EventosForm extends TWindow
         $edicao = new TEntry('edicao');
         $nome = new TEntry('nome');
         $descricao = new TText('descricao');
-        $data_evento = new TDate('data_evento');
-        $hora_evento = new TEntry('hora_evento');
+        $data_inicio = new TDate('data_inicio');
+        $data_fim = new TDate('data_fim');
         $duracao = new TEntry('duracao');
         $situacao = new TCombo('situacao');
 
         $nome->setMaxLength(100);
         //$descricao->setMaxLength(1500);
-		
-		$hora_evento->setProperty('type', 'time');
 		
 		$duracao->setMask('99');
 		
@@ -50,8 +46,8 @@ class EventosForm extends TWindow
         $edicao->addValidation('Edição' , new TRequiredValidator);
         $nome->addValidation('Nome' , new TRequiredValidator);
         $descricao->addValidation('Descrição' , new TRequiredValidator);
-        $data_evento->addValidation('Data do Evento' , new TRequiredValidator);
-        $hora_evento->addValidation('Hora do Evento' , new TRequiredValidator);
+        $data_inicio->addValidation('Data de Início' , new TRequiredValidator);
+        $data_fim->addValidation('Data de Fim' , new TRequiredValidator);
         $duracao->addValidation('Duração(horas)' , new TRequiredValidator);
         $situacao->addValidation('Situação' , new TRequiredValidator);
 
@@ -61,8 +57,8 @@ class EventosForm extends TWindow
         $this->form->addFields([new TLabel("Edição {$redstar}")], [$edicao]);
         $this->form->addFields([new TLabel("Nome {$redstar}")], [$nome]);
         $this->form->addFields([new TLabel("Descrição {$redstar}")], [$descricao]);
-        $this->form->addFields([new TLabel("Data do Evento {$redstar}")], [$data_evento]);
-        $this->form->addFields([new TLabel("Hora do Evento {$redstar}")], [$hora_evento]);
+        $this->form->addFields([new TLabel("Data de Início {$redstar}")], [$data_inicio]);
+        $this->form->addFields([new TLabel("Data de Fim {$redstar}")], [$data_fim]);
         $this->form->addFields([new TLabel("Duração(horas) {$redstar}")], [$duracao]);
         $this->form->addFields([new TLabel("Situação {$redstar}")], [$situacao]);
 
@@ -74,7 +70,6 @@ class EventosForm extends TWindow
         $container->add( $this->form );
 
         parent::add( $container );
-
     }
 
     function onSave()
@@ -96,11 +91,8 @@ class EventosForm extends TWindow
             TApplication::gotoPage('EventosList', 'onReload');
 
         } catch (Exception $e) {
-
             new TMessage('error', $e->getMessage());
-
             TTransaction::rollback();
-
         }
 
     }
@@ -108,9 +100,7 @@ class EventosForm extends TWindow
     function onEdit($param)
     {
         try {
-
             if (isset($param['key'])) {
-
                 $key = $param['key'];
 
                 TTransaction::open('database');
@@ -119,7 +109,6 @@ class EventosForm extends TWindow
                 $this->form->setData($object);
 
                 TTransaction::close();
-
             }
 
         } catch (Exception $e) {

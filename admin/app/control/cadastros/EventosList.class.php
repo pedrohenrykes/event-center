@@ -48,16 +48,16 @@ class EventosList extends TPage
         $dggenero_nome = new TDataGridColumn('genero_nome', 'Gênero', 'left', 200);
 		$dgedicao = new TDataGridColumn('edicao', 'Edição', 'left', 200);
         $dgnome = new TDataGridColumn('nome', 'Nome', 'left', 200);
-        $dgdata_evento = new TDataGridColumn('data_evento', 'Data do Evento', 'left', 200);
-        $dghora_evento = new TDataGridColumn('hora_evento', 'Hora do Evento', 'left', 200);
+        $dgdata_inicio = new TDataGridColumn('data_inicio', 'Data de Início', 'left', 200);
+        $dgdata_fim = new TDataGridColumn('data_fim', 'Data de Fim', 'left', 200);
         $dgsituacao = new TDataGridColumn('situacao', 'Situação', 'left', 200);
 
-        $this->datagrid->addColumn($dglocal_nome);
+        $this->datagrid->addColumn($dgnome);
+		$this->datagrid->addColumn($dglocal_nome);
         $this->datagrid->addColumn($dggenero_nome);
 		$this->datagrid->addColumn($dgedicao);
-        $this->datagrid->addColumn($dgnome);
-        $this->datagrid->addColumn($dgdata_evento);
-        $this->datagrid->addColumn($dghora_evento);
+        $this->datagrid->addColumn($dgdata_inicio);
+        $this->datagrid->addColumn($dgdata_fim);
         $this->datagrid->addColumn($dgsituacao);
 
         $actionEdit = new TDataGridAction(array('EventosForm', 'onEdit'));
@@ -101,7 +101,8 @@ class EventosList extends TPage
 
         if ($cadastros) {
             foreach ($cadastros as $cadastro) {
-				$cadastro->data_evento = TDate::date2br($cadastro->data_evento);
+				$cadastro->data_inicio = TDate::date2br($cadastro->data_inicio);
+				$cadastro->data_fim = TDate::date2br($cadastro->data_fim);
                 $this->datagrid->addItem($cadastro);
             }
         }

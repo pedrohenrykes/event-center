@@ -70,9 +70,16 @@ class ProgramacoesList extends TPage
         $actionDelete->setLabel('Deletar');
         $actionDelete->setImage('ico_delete.png');
         $actionDelete->setField('id');
+		
+		$actionFotosDetalhe = new CustomDataGridAction(array('ProgramacoesImagensDetalhe', 'onReload'));
+        $actionFotosDetalhe->setLabel('Imagens das Programações');
+        $actionFotosDetalhe->setImage('ico_view.png');
+        $actionFotosDetalhe->setField('id');
+		$actionFotosDetalhe->setFk('id');
 
         $this->datagrid->addAction($actionEdit);
         $this->datagrid->addAction($actionDelete);
+		$this->datagrid->addAction($actionFotosDetalhe);
 
         $this->datagrid->createModel();
 

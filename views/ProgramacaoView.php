@@ -11,6 +11,7 @@
 
   <?php
     require_once "controls/ProgramacaoControl.php";
+	require_once "controls/ProgramacaoImagensControl.php";
 
     $objects = ProgramacaoControl::getData();
 
@@ -82,7 +83,23 @@
                         <h5>Fotos</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-                      <img class="materialboxed" width="100%" src="resources/app/img/no-photo.png" >
+					  <?php $objects2 = ProgramacaoImagensControl::getData($object["id"]); ?>
+					  <div class="slider">
+							<ul class="slides">
+							<?php if($objects2->rowCount() > 0): ?>
+							<?php foreach( $objects2 as $object2 ): ?>
+							  <li>
+								<img<?php /*class="materialboxed" width="100%"*/ ?> data-caption="<?= $object2["descricao"]; ?>" src="posts/<?= $object2["arquivo"]; ?>">
+								<div class="caption right-align">
+								  <h5 class="light grey-text text-lighten-3"><?= $object2["descricao"]; ?></h5>
+								</div>
+							  </li>
+							  <?php endforeach; ?>
+							  <?php else: ?>
+							  <img class="materialboxed" data-caption="Sem fotos" width="100%" src="resources/app/img/no-photo.png" >
+							  <?php endif; ?>
+							</ul>
+						</div>
                     </div>
                   </div>
                 </div>

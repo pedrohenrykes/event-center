@@ -18,7 +18,7 @@ class ProgramacoesImagensRecord extends TRecord
 	
 	function get_ico_imagem() {
 		if(!empty($this->arquivo)) {
-			return '<img src="../../../../posts/' . $this->arquivo . '" width="50px" height="50px">';
+			return '<img src="/../../../../posts/' . $this->arquivo . '" width="50px" height="50px">';
 		}
 		return '';
 	}

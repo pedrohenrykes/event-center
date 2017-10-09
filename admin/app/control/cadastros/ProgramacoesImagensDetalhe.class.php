@@ -70,7 +70,7 @@ class ProgramacoesImagensDetalhe extends TWindow
 		$this->form->addAction('Salvar', new TAction(array($this, 'onSave')), 'ico_save.png')->class = 'btn btn-info';
         $this->form->addAction('Voltar', new TAction(array('ProgramacoesList', 'onReload')), 'ico_datagrid.gif');
 
-        $this->datagrid = new BootstrapDatagridWrapper( new TDataGrid() );
+        $this->datagrid = new BootstrapDatagridWrapper( new CustomDataGrid() );
         $this->datagrid->datatable = "true";
         $this->datagrid->style = "width: 100%";
         $this->datagrid->setHeight( 320 );
@@ -78,12 +78,6 @@ class ProgramacoesImagensDetalhe extends TWindow
         $this->datagrid->addColumn(new TDataGridColumn('programacao_nome', 'Programação', 'left', 100));
 		$this->datagrid->addColumn(new TDataGridColumn('descricao', 'Descrição', 'left', 100));
 		$this->datagrid->addColumn(new TDataGridColumn('ico_imagem', 'Imagem', 'left', 100));
-		
-        $actionEdit = new CustomDataGridAction(array($this, 'onEdit'));
-        $actionEdit->setLabel('Editar');
-        $actionEdit->setImage('ico_edit.png');
-        $actionEdit->setField('id');
-        $actionEdit->setFk('programacao_id');
 
         $actionDelete = new CustomDataGridAction(array($this, 'onDelete'));
         $actionDelete->setLabel('Deletar');
@@ -91,7 +85,6 @@ class ProgramacoesImagensDetalhe extends TWindow
         $actionDelete->setField('id');
         $actionDelete->setFk('programacao_id');
 
-        $this->datagrid->addAction($actionEdit);
         $this->datagrid->addAction($actionDelete);
 
 		$this->datagrid->createModel();
@@ -111,7 +104,6 @@ class ProgramacoesImagensDetalhe extends TWindow
 
     function onReload()
     {
-
         TTransaction::open('database');
 
         $repository = new TRepository('ProgramacoesImagensRecord');
@@ -119,13 +111,11 @@ class ProgramacoesImagensDetalhe extends TWindow
         $criteria = new TCriteria;
 
         $criteria->add(new TFilter('programacao_id', '=', filter_input(INPUT_GET, 'fk')));
-
         $cadastros = $repository->load($criteria);
 
         $this->datagrid->clear();
 
         if ($cadastros) {
-
             foreach ($cadastros as $cadastro) {
                 $this->datagrid->addItem($cadastro);
             }
@@ -170,7 +160,6 @@ class ProgramacoesImagensDetalhe extends TWindow
 
     function onSave()
     {
-
         try {
             TTransaction::open('database');
 
@@ -181,18 +170,23 @@ class ProgramacoesImagensDetalhe extends TWindow
 				$source_file = 'tmp/' . $cadastro->arquivo;
                 $extensao = pathinfo(strtolower($cadastro->arquivo), PATHINFO_EXTENSION);
 				
-				if ($extensao == 'jpg') {
+				$extensoes = ['jpg', 'png', 'gif', 'jpeg'];
+				if (in_array($extensao, $extensoes)) {
 					if (file_exists($source_file)) {
 						TTransaction::open('database');
-						$nomearquivo = 'imagen_festadoboi_' . $cadastro->id . '.' . $extensao;
-						$caminho = '../../../posts/' . $nomearquivo1;
+						$cadastro->store();
+						
+						$nomearquivo = 'imagem_festadoboi_' . $cadastro->id . '.' . $extensao;
+						$caminho = __DIR__ . '/../../../../posts/' . $nomearquivo;
+						unset($cadastro->programacao_nome);
 						
 						rename($source_file, $caminho);
 						$cadastro->arquivo = $nomearquivo;
 						
 						$cadastro->store();
+						
 						TTransaction::close();
-
+						
 						$param = array();
 						$param ['fk'] = $cadastro->programacao_id;
 

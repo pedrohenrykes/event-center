@@ -38,7 +38,7 @@ class ProgramacoesList extends TPage
 		$this->form->addAction( "Buscar", new TAction( [ $this, "onSearch" ] ), "fa:search" );
         $this->form->addAction( "Novo", new TAction( [ "ProgramacoesForm", "onEdit" ] ), "bs:plus-sign green" );
 
-		$this->datagrid = new BootstrapDatagridWrapper( new TDataGrid() );
+		$this->datagrid = new BootstrapDatagridWrapper( new CustomDataGrid() );
         $this->datagrid->datatable = "true";
         $this->datagrid->style = "width: 100%";
         $this->datagrid->setHeight( 320 );
@@ -61,12 +61,12 @@ class ProgramacoesList extends TPage
 		$this->datagrid->addColumn($dghora_fim);
         $this->datagrid->addColumn($dgsituacao);
 
-        $actionEdit = new TDataGridAction(array('ProgramacoesForm', 'onEdit'));
+        $actionEdit = new CustomDataGridAction(array('ProgramacoesForm', 'onEdit'));
         $actionEdit->setLabel('Editar');
         $actionEdit->setImage('ico_edit.png');
         $actionEdit->setField('id');
 
-        $actionDelete = new TDataGridAction(array($this, 'onDelete'));
+        $actionDelete = new CustomDataGridAction(array($this, 'onDelete'));
         $actionDelete->setLabel('Deletar');
         $actionDelete->setImage('ico_delete.png');
         $actionDelete->setField('id');

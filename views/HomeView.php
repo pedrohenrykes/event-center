@@ -10,8 +10,7 @@
     </div>
       
     <br/><div style="text-align:center">
-         <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Julgamento da raça Pardo-Suiço I, EMPARN e Convidados e +" style="background-color:midnightblue">Programação</a>
-         <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="7 a 14 de Outubro" style="background-color:midnightblue">Dia do Evento</a>
+         <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Julgamento da raça Pardo-Suiço I, EMPARN e Convidados e +" style="background-color:midnightblue" href="index.php?page=Programacao">Programação</a>
          <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Parque Aristófanes Fernandes (Parnamirim/RN)" style="background-color:midnightblue">Local do Evento</a>
          <a class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="ANORC e Gorveno do Rio Grande do Norte" style="background-color:midnightblue">Realização</a>
     </div>  <br/>

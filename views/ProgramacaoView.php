@@ -10,16 +10,16 @@
 <section>
 
   <?php
-    require_once "controls/ProgramacaoControl.php";
-	require_once "controls/ProgramacaoImagensControl.php";
+  require_once "controls/ProgramacaoControl.php";
+  require_once "controls/ProgramacaoImagensControl.php";
 
-    $objects = ProgramacaoControl::getData();
+  $objects = ProgramacaoControl::getData();
 
-    $tabs = [];
-    foreach ( $objects as $object ) {
-        $data = date( "d/m", strtotime( $object["data_evento"] ) );
-        $tabs[ $object["data_evento"] ] = $data;
-    }
+  $tabs = [];
+  foreach ( $objects as $object ) {
+    $data = date( "d/m", strtotime( $object["data_evento"] ) );
+    $tabs[ $object["data_evento"] ] = $data;
+  }
   ?>
 
   <div class="row">
@@ -31,8 +31,8 @@
             <li class="tab col s3">
               <a href="#<?= str_replace( '/', '_', $tab ); ?>">
                 <?=
-                  substr( strftime( '%A - ', strtotime( $key ) ), 0, 3 ) . ' - ' .
-                  strftime( '%d/%m', strtotime( $key ) );
+                utf8_encode( substr( strftime( '%A - ', strtotime( $key ) ), 0, 3 ) ) . ' - ' .
+                strftime( '%d/%m', strtotime( $key ) );
                 ?>
               </a>
             </li>
@@ -66,7 +66,22 @@
                         <h5>Horário</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-                      <span><b> <?= date( "H:i", strtotime( $object["hora_inicio"] ) ) . " às " . date( "H:i", strtotime( $object["hora_fim"] ) ); ?> </b></span><br>
+                      <span>
+                        <b>
+                          <?php
+
+                          $inicio = date( "H:i", strtotime( $object["hora_inicio"] ) );
+                          $fim    = date( "H:i", strtotime( $object["hora_fim"] ) );
+
+                          if ( $fim != "00:00" ) {
+                            echo $inicio . " às " . $fim;
+                          } else {
+                            echo $inicio;
+                          }
+
+                          ?>
+                        </b>
+                      </span><br>
                       <div class="intro-message left-align green-text text-darken-4 ">
                         <h5>Local</h5>
                         <hr class="intro-divider"><a></a>
@@ -83,23 +98,23 @@
                         <h5>Fotos</h5>
                         <hr class="intro-divider"><a></a>
                       </div>
-					  <?php $objects2 = ProgramacaoImagensControl::getData($object["id"]); ?>
-					  <div class="slider">
-							<ul class="slides">
-							<?php if($objects2->rowCount() > 0): ?>
-							<?php foreach( $objects2 as $object2 ): ?>
-							  <li>
-								<img<?php /*class="materialboxed" width="100%"*/ ?> data-caption="<?= $object2["descricao"]; ?>" src="posts/<?= $object2["arquivo"]; ?>">
-								<div class="caption right-align">
-								  <h5 class="light grey-text text-lighten-3"><?= $object2["descricao"]; ?></h5>
-								</div>
-							  </li>
-							  <?php endforeach; ?>
-							  <?php else: ?>
-							  <img class="materialboxed" data-caption="Sem fotos" width="100%" src="resources/app/img/no-photo.png" >
-							  <?php endif; ?>
-							</ul>
-						</div>
+                      <?php $objects2 = ProgramacaoImagensControl::getData($object["id"]); ?>
+                      <div class="slider">
+                        <ul class="slides">
+                          <?php if($objects2->rowCount() > 0): ?>
+                            <?php foreach( $objects2 as $object2 ): ?>
+                              <li>
+                                <img<?php /*class="materialboxed" width="100%"*/ ?> data-caption="<?= $object2["descricao"]; ?>" src="posts/<?= $object2["arquivo"]; ?>">
+                                <div class="caption right-align">
+                                  <h5 class="light grey-text text-lighten-3"><?= $object2["descricao"]; ?></h5>
+                                </div>
+                              </li>
+                            <?php endforeach; ?>
+                          <?php else: ?>
+                            <img class="materialboxed" data-caption="Sem fotos" width="100%" src="resources/app/img/no-photo.png" >
+                          <?php endif; ?>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
